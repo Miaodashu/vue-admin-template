@@ -1,0 +1,96 @@
+@import "./variables.less";
+@import "./iview-ui.less";
+
+// 此文件放置一些公共样式，或复用率高的样式
+
+html,body {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100%;
+}
+// 全局页面外层盒子统一类名
+.content{
+  min-height: 100%;
+}
+// 分页器外层盒子样式
+.pagination{
+  text-align: right;
+  margin-top: 20px;
+}
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+.pr-5 {
+  padding-right: 5px;
+}
+
+.pl-5 {
+  padding-left: 5px;
+}
+
+.block {
+  display: block;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.inline-block {
+  display: block;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+.default-color{
+  color: @primary-color;
+}
+// 查询组件统一样式
+.tf-search-group {
+  // margin-top: 16px;
+  &:first-child {
+      margin-top: 0;
+  }
+
+  .tf-search-widget {
+    display: inline-block;
+      margin-right: @search-box-marginRight;
+      margin-bottom: @search-box-marginBottom;
+      .label {
+          color: @search-label-color;
+          font-size: @search-label-size;
+          margin-right: 8px;
+      }
+      .input-width{
+          width:@search-box-inputWidth;
+      }
+      .price-width{
+          width: 108px;
+      }
+      .date-width{
+          width: 115px;
+      }
+      .margin-left{
+          margin-left: 10px;
+      }
+      .more-search{
+        color: @primary-color;
+      }
+  }
+}
