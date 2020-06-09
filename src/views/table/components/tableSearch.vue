@@ -1,40 +1,45 @@
 <template>
   <div class="search-box">
-    <Row type="flex" class="tf-search-group" justify="space-between">
-      <div>
-        <div class="tf-search-widget">
-          <span class="label">商品编码：</span>
-          <Input v-model="searchForm.count" clearable class="input-width" />
-        </div>
-        <div class="tf-search-widget">
-          <span class="label">户号：</span>
-          <Input v-model="searchForm.count" clearable class="input-width" />
-        </div>
-        <div class="tf-search-widget">
-          <span class="label">订单编号：</span>
-          <Input v-model="searchForm.count" clearable class="input-width" />
-        </div>
+    <Row type="flex" justify="space-between">
+      <Form ref="formInline" :model="formInline" inline  class="tf-search-widget">
+        <FormItem label="商品编码" :label-width="70">
+          <Input type="text" v-model="formInline.user"></Input>
+        </FormItem>
+        <FormItem label="户号" :label-width="50">
+          <Input type="text" v-model="formInline.password"></Input>
+        </FormItem>
+        <FormItem label="商品编码" :label-width="70">
+          <Input type="text" v-model="formInline.user"></Input>
+        </FormItem>
         <span v-show="isMore">
-          <div class="tf-search-widget">
-            <span class="label">商品编码：</span>
-            <Input v-model="searchForm.count" clearable class="input-width" />
-          </div>
-          <div class="tf-search-widget">
-            <span class="label">户号：</span>
-            <Input v-model="searchForm.count" clearable class="input-width" />
-          </div>
-          <div class="tf-search-widget">
-            <span class="label">订单编号：</span>
-            <Input v-model="searchForm.count" clearable class="input-width" />
-          </div>
+          <FormItem label="户号" :label-width="50">
+            <Input type="text" v-model="formInline.password"></Input>
+          </FormItem>
+          <FormItem label="商品编码" :label-width="70">
+            <Input type="text" v-model="formInline.user"></Input>
+          </FormItem>
+          <FormItem label="户号" :label-width="50">
+            <Input type="text" v-model="formInline.password"></Input>
+          </FormItem>
+          <FormItem label="商品编码" :label-width="70">
+            <Input type="text" v-model="formInline.user"></Input>
+          </FormItem>
+          <FormItem label="户号" :label-width="50">
+            <Input type="text" v-model="formInline.password"></Input>
+          </FormItem>
         </span>
-        <div class="tf-search-widget">
+        <FormItem>
           <Button type="primary">查询</Button>
           <Button class="margin-left">重置</Button>
-          <Button type="text" class="margin-left more-search" @click="handleMore">{{isMore?'收起':'更多搜索条件'}}</Button>
-        </div>
-      </div>
-      <div class="tf-search-widget">
+          <Button
+            type="text"
+            class="margin-left more-search"
+            @click="handleMore"
+            >{{ isMore ? "收起" : "更多搜索条件" }}</Button
+          >
+        </FormItem>
+      </Form>
+      <div class="tf-search-widget margin-bottom">
         <Button type="primary" icon="md-add">添加商品 </Button>
         <Button icon="ios-download-outline" type="primary" class="margin-left"
           >导出</Button
@@ -59,7 +64,7 @@ export default {
   },
   methods: {
     handleMore() {
-      this.isMore= !this.isMore
+      this.isMore = !this.isMore;
     },
   },
 };

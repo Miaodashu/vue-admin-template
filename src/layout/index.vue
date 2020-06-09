@@ -110,6 +110,7 @@ export default {
     padding: 10px;
     overflow: auto;
     background-color: #f0f0f0;
+    position: relative;
   }
 }
 .layout-header-bar {

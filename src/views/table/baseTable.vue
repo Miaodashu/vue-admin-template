@@ -11,23 +11,92 @@
           size="small"
           style="margin-right: 5px"
           @click="show(index)"
-          >View</Button
+          >编辑</Button
         >
-        <Button type="error" size="small" @click="remove(index)">Delete</Button>
+        <Button type="error" size="small" @click="remove(index)">删除</Button>
       </template>
     </Table>
     <div class="pagination">
       <Page :total="40" show-elevator show-sizer />
     </div>
+    <Modal v-model="modal1" title="详情">
+      <Form :model="formItem" :label-width="80">
+        <FormItem label="Input">
+          <Input
+            v-model="formItem.input"
+            placeholder="Enter something..."
+          ></Input>
+        </FormItem>
+        <FormItem label="Select">
+          <Select v-model="formItem.select">
+            <Option value="beijing">New York</Option>
+            <Option value="shanghai">London</Option>
+            <Option value="shenzhen">Sydney</Option>
+          </Select>
+        </FormItem>
+        <FormItem label="DatePicker">
+          <Row>
+            <Col span="11">
+              <DatePicker
+                type="date"
+                placeholder="Select date"
+                v-model="formItem.date"
+              ></DatePicker>
+            </Col>
+            <Col span="2" style="text-align: center">-</Col>
+            <Col span="11">
+              <TimePicker
+                type="time"
+                placeholder="Select time"
+                v-model="formItem.time"
+              ></TimePicker>
+            </Col>
+          </Row>
+        </FormItem>
+        <FormItem label="Radio">
+          <RadioGroup v-model="formItem.radio">
+            <Radio label="male">Male</Radio>
+            <Radio label="female">Female</Radio>
+          </RadioGroup>
+        </FormItem>
+        <FormItem label="Checkbox">
+          <CheckboxGroup v-model="formItem.checkbox">
+            <Checkbox label="Eat"></Checkbox>
+            <Checkbox label="Sleep"></Checkbox>
+            <Checkbox label="Run"></Checkbox>
+            <Checkbox label="Movie"></Checkbox>
+          </CheckboxGroup>
+        </FormItem>
+        <FormItem label="Switch">
+          <i-switch v-model="formItem.switch" size="large">
+            <span slot="open">On</span>
+            <span slot="close">Off</span>
+          </i-switch>
+        </FormItem>
+        <FormItem label="Slider">
+          <Slider v-model="formItem.slider" range></Slider>
+        </FormItem>
+        <FormItem label="Text">
+          <Input
+            v-model="formItem.textarea"
+            type="textarea"
+            :autosize="{ minRows: 2, maxRows: 5 }"
+            placeholder="Enter something..."
+          ></Input>
+        </FormItem>
+      </Form>
+    </Modal>
+    <del-model key="delModel" :is-del.sync="isDel" :delLoading="delLoading" @handleDel="handleDel"></del-model>
   </Card>
 </template>
 
 <script>
 import tableSearch from "./components/tableSearch";
+import delModel from '@/components/delModel'
 export default {
   name: "baseTable",
   components: {
-    tableSearch,
+    tableSearch,delModel
   },
   data() {
     return {
@@ -69,25 +138,25 @@ export default {
           minWidth: 100,
         },
         {
-          title: "Action",
+          title: "操作",
           slot: "action",
           fixed: "right",
-          width: 200,
+          width: 180,
         },
       ],
       data6: [
         {
-          name: "John Brown",
+          name: "假如这条信息内容很多很多",
           age: 18,
-          address: "New York No. 1 Lake Park",
+          address: "假如这条信息n内容很多很多",
           province: "America",
           city: "New York",
           zip: 100000,
         },
         {
-          name: "Jim Green",
+          name: "假如这条信息内容一般",
           age: 24,
-          address: "Washington, D.C. No. 1 Lake Park",
+          address: "假如这条信息内容一般",
           province: "America",
           city: "Washington, D.C.",
           zip: 100000,
@@ -109,15 +178,34 @@ export default {
           zip: 100000,
         },
       ],
+      formItem: {},
+      modal1: false,
+      isDel:false,
+      delLoading:false
     };
   },
   methods: {
     show(index) {
+      if (index === 1) {
+        this.modal1 = true;
+        return;
+      }
       this.$router.push({ path: "/table/detail", query: { id: index } });
     },
     remove(index) {
-      this.data6.splice(index, 1);
+      this.isDel = true
+      this.index = index
+      // this.data6.splice(index, 1);
     },
+    handleDel(){
+      this.delLoading = true
+      setTimeout(()=>{
+        this.delLoading = false
+        this.isDel = false
+        this.data6.splice(this.index, 1);
+
+      },1000)
+    }
   },
 };
 </script>

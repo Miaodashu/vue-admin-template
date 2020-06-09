@@ -3,7 +3,8 @@
 
 // 此文件放置一些公共样式，或复用率高的样式
 
-html,body {
+html,
+body {
   height: 100%;
   box-sizing: border-box;
 }
@@ -12,11 +13,11 @@ html,body {
   height: 100%;
 }
 // 全局页面外层盒子统一类名
-.content{
+.content {
   min-height: 100%;
 }
 // 分页器外层盒子样式
-.pagination{
+.pagination {
   text-align: right;
   margin-top: 20px;
 }
@@ -58,39 +59,39 @@ html,body {
     height: 0;
   }
 }
-.default-color{
+.default-color {
   color: @primary-color;
 }
 // 查询组件统一样式
-.tf-search-group {
-  // margin-top: 16px;
-  &:first-child {
-      margin-top: 0;
+.search-box {
+  .margin-bottom {
+    margin-bottom: 16px;
+  }
+}
+.tf-search-widget {
+  .label {
+    color: @search-label-color;
+    font-size: @search-label-size;
+    margin-right: 8px;
+  }
+  .ivu-select, 
+  .ivu-input-wrapper {
+    width: @search-box-inputWidth;
+  }
+  .price-width {
+    width: 108px;
+  }
+  .date-width {
+    width: 115px;
+  }
+  .margin-left {
+    margin-left: 10px;
   }
 
-  .tf-search-widget {
-    display: inline-block;
-      margin-right: @search-box-marginRight;
-      margin-bottom: @search-box-marginBottom;
-      .label {
-          color: @search-label-color;
-          font-size: @search-label-size;
-          margin-right: 8px;
-      }
-      .input-width{
-          width:@search-box-inputWidth;
-      }
-      .price-width{
-          width: 108px;
-      }
-      .date-width{
-          width: 115px;
-      }
-      .margin-left{
-          margin-left: 10px;
-      }
-      .more-search{
-        color: @primary-color;
-      }
+  .more-search {
+    color: @primary-color;
+  }
+  /deep/ .ivu-form-item {
+    margin-bottom: 16px;
   }
 }

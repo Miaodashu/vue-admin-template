@@ -6,7 +6,7 @@
       <template v-if="!onlyOneChild.meta.hideInMenu">
         <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
           <MenuItem :name="resolvePath(onlyOneChild.path)">
-            <Icon :type="onlyOneChild.meta.icon" />
+            <Icon v-if="onlyOneChild.meta.icon" :type="onlyOneChild.meta.icon" />
             <span>{{onlyOneChild.meta.title}}</span>
           </MenuItem>
         </app-link>
@@ -15,7 +15,7 @@
   
     <Submenu v-else ref="subMenu" :name="resolvePath(item.path)">
       <template slot="title">
-        <Icon :type="item.meta.icon" />
+        <Icon v-if="item.meta.icon" :type="item.meta.icon" />
         <span>{{item.meta.title}}</span>
       </template>
       <sidebar-item
